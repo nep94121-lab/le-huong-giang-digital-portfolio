@@ -12,7 +12,7 @@
   :root {
     --bg-main: #FAFAFC;
     --surface-card: #FFFFFF;
-    --surface-glass: rgba(255, 255, 255, 0.9);
+    --surface-glass: rgba(255, 255, 255, 0.92);
     --primary: #008B44;
     --primary-dark: #005C2D;
     --primary-light: #E8F8F0;
@@ -37,7 +37,7 @@
     overflow-x: hidden;
   }
 
-  /* STICKY NAV */
+  /* RESILIENT STICKY NAVBAR */
   .navbar {
     position: sticky;
     top: 0;
@@ -45,37 +45,59 @@
     background: var(--surface-glass);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-subtle);
-    padding: 12px 32px;
+    padding: 10px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
   }
   .nav-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
     color: var(--text-main);
+    flex-shrink: 0;
+    white-space: nowrap;
   }
   .brand-logo-badge {
     background: var(--primary);
     color: #ffffff;
     font-weight: 900;
-    font-size: 13px;
+    font-size: 12.5px;
     padding: 5px 9px;
     border-radius: 6px;
   }
-  .brand-text-title { font-size: 14.5px; font-weight: 800; }
-  .brand-text-sub { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-  .nav-links { display: flex; align-items: center; gap: 20px; list-style: none; }
-  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 12.5px; font-weight: 600; transition: all 0.2s; }
-  .nav-links a:hover { color: var(--primary); }
+  .brand-text-title { font-size: 14px; font-weight: 800; }
+  .brand-text-sub { font-size: 10.5px; color: var(--text-muted); font-weight: 500; }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  .nav-links li { white-space: nowrap; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.2s;
+    white-space: nowrap;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
+  .nav-links a:hover { color: var(--primary); background: var(--primary-light); }
+  
   .nav-cta {
     background: var(--primary);
     color: #ffffff;
-    padding: 8px 16px;
+    padding: 7px 14px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
     text-decoration: none;
     display: inline-flex;
@@ -84,56 +106,63 @@
     cursor: pointer;
     border: none;
     transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
   .main-wrapper {
     max-width: 1240px;
     margin: 0 auto;
-    padding: 36px 24px 80px 24px;
+    padding: 30px 20px 80px 20px;
   }
 
   /* HERO SECTION */
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.35fr 1fr;
-    gap: 36px;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 32px;
     align-items: center;
-    margin-bottom: 56px;
+    margin-bottom: 48px;
   }
-  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+  }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 12px; }
   .pill-badge {
-    padding: 4px 12px;
+    padding: 3px 10px;
     border-radius: 9999px;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap;
   }
   .pill-badge.school { background: var(--primary-light); color: var(--primary); border: 1px solid rgba(0, 139, 68, 0.2); }
   .pill-badge.status { background: #F1F5F9; color: var(--text-main); border: 1px solid var(--border-subtle); }
   
-  .hero-headline { font-size: 38px; font-weight: 900; line-height: 1.18; letter-spacing: -0.8px; color: var(--text-main); margin-bottom: 14px; }
+  .hero-headline { font-size: 36px; font-weight: 900; line-height: 1.18; letter-spacing: -0.8px; color: var(--text-main); margin-bottom: 14px; }
   .hero-headline span { color: var(--primary); }
-  .hero-lead { font-size: 14.5px; color: var(--text-muted); line-height: 1.6; text-align: justify; margin-bottom: 20px; }
+  .hero-lead { font-size: 14px; color: var(--text-muted); line-height: 1.6; text-align: justify; margin-bottom: 20px; }
 
-  .hero-meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .hero-meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
   .meta-card {
     background: var(--surface-card);
     border: 1px solid var(--border-subtle);
-    padding: 12px 14px;
+    padding: 10px 12px;
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
   }
-  .meta-card-label { font-size: 10.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-  .meta-card-value { font-size: 13.5px; font-weight: 800; color: var(--text-main); margin-top: 2px; }
+  .meta-card-label { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+  .meta-card-value { font-size: 13px; font-weight: 800; color: var(--text-main); margin-top: 2px; }
 
   /* PROFILE CARD */
   .profile-showcase-card {
     background: var(--surface-card);
     border: 1px solid var(--border-subtle);
     border-radius: 14px;
-    padding: 24px;
+    padding: 22px;
     box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
@@ -141,83 +170,89 @@
     border-top: 4px solid var(--primary);
   }
   .avatar-frame {
-    width: 140px;
-    height: 180px;
+    width: 135px;
+    height: 175px;
     border-radius: 10px;
     overflow: hidden;
     border: 2px solid var(--primary);
     box-shadow: 0 8px 20px rgba(0, 139, 68, 0.15);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
   .avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
-  .profile-name { font-size: 19px; font-weight: 900; color: var(--text-main); }
-  .profile-role { font-size: 12.5px; font-weight: 700; color: var(--primary); margin-top: 2px; }
-  .profile-inst { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+  .profile-name { font-size: 18.5px; font-weight: 900; color: var(--text-main); }
+  .profile-role { font-size: 12px; font-weight: 700; color: var(--primary); margin-top: 2px; }
+  .profile-inst { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
   .profile-stats-row {
     display: flex;
     justify-content: space-between;
     width: 100%;
     border-top: 1px solid var(--border-subtle);
-    margin-top: 18px;
-    padding-top: 14px;
+    margin-top: 16px;
+    padding-top: 12px;
     text-align: center;
   }
-  .stat-item h4 { font-size: 15px; font-weight: 800; color: var(--text-main); }
-  .stat-item p { font-size: 10.5px; color: var(--text-muted); font-weight: 600; }
+  .stat-item h4 { font-size: 14.5px; font-weight: 800; color: var(--text-main); }
+  .stat-item p { font-size: 10px; color: var(--text-muted); font-weight: 600; }
 
   /* SECTION WRAPPERS */
-  .section-block { margin-bottom: 56px; }
+  .section-block { margin-bottom: 50px; }
   .section-header-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     border-bottom: 1.5px solid var(--border-subtle);
-    padding-bottom: 12px;
+    padding-bottom: 10px;
+    gap: 12px;
+    flex-wrap: wrap;
   }
-  .sec-title-group h2 { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; color: var(--text-main); }
-  .sec-title-group p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+  .sec-title-group h2 { font-size: 21px; font-weight: 900; letter-spacing: -0.5px; color: var(--text-main); }
+  .sec-title-group p { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
   .sec-tag-badge {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 800;
     background: var(--primary-light);
     color: var(--primary);
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 4px;
     border: 1px solid rgba(0, 139, 68, 0.2);
+    white-space: nowrap;
   }
 
-  /* ========================================================= */
-  /* INTERACTIVE LOAN STUDIO WITH DUAL-SYNC DIRECT INPUTS */
-  /* ========================================================= */
+  /* INTERACTIVE LOAN STUDIO */
   .studio-grid {
     display: grid;
-    grid-template-columns: 1.25fr 1fr;
-    gap: 28px;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
     background: var(--surface-card);
     border: 1px solid var(--border-subtle);
     border-radius: 12px;
-    padding: 28px;
+    padding: 24px;
     box-shadow: var(--shadow-md);
   }
-  .control-group { margin-bottom: 20px; }
+  @media (max-width: 900px) {
+    .studio-grid { grid-template-columns: 1fr; }
+  }
+
+  .control-group { margin-bottom: 18px; }
   .control-label-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 6px;
   }
   
-  /* EDITABLE NUMBER INPUT WITH UNIT */
   .input-with-unit {
     display: flex;
     align-items: center;
     background: #F8FAFC;
     border: 1.5px solid var(--border-subtle);
     border-radius: 6px;
-    padding: 3px 8px;
+    padding: 2px 8px;
     transition: all 0.2s;
   }
   .input-with-unit:focus-within {
@@ -230,18 +265,13 @@
     background: transparent;
     font-family: 'JetBrains Mono', monospace;
     font-weight: 800;
-    font-size: 13.5px;
+    font-size: 13px;
     color: var(--primary);
     outline: none;
     text-align: right;
-    width: 140px;
+    width: 130px;
   }
-  .input-unit-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-muted);
-    margin-left: 6px;
-  }
+  .input-unit-label { font-size: 10.5px; font-weight: 700; color: var(--text-muted); margin-left: 5px; }
 
   .custom-range {
     width: 100%;
@@ -252,10 +282,9 @@
     margin-top: 4px;
   }
 
-  /* QUICK CHIPS */
   .chips-row {
     display: flex;
-    gap: 6px;
+    gap: 5px;
     margin-top: 6px;
     flex-wrap: wrap;
   }
@@ -263,12 +292,13 @@
     background: #F1F5F9;
     border: 1px solid #E2E8F0;
     border-radius: 4px;
-    padding: 2px 8px;
-    font-size: 10.5px;
+    padding: 2px 7px;
+    font-size: 10px;
     font-weight: 700;
     color: var(--text-muted);
     cursor: pointer;
     transition: all 0.15s;
+    white-space: nowrap;
   }
   .chip-btn:hover {
     background: var(--primary-light);
@@ -276,17 +306,18 @@
     color: var(--primary);
   }
 
-  .package-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+  .package-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 18px; }
   .pkg-btn {
     background: #F8FAFC;
     border: 1.5px solid var(--border-subtle);
     border-radius: 6px;
-    padding: 8px 6px;
+    padding: 7px 4px;
     font-size: 11px;
     font-weight: 700;
     cursor: pointer;
     text-align: center;
     color: var(--text-muted);
+    white-space: nowrap;
   }
   .pkg-btn.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
   
@@ -294,28 +325,25 @@
     background: #F8FAFC;
     border: 1px solid var(--border-subtle);
     border-radius: 10px;
-    padding: 20px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .metric-strip { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-subtle); font-size: 13px; }
+  .metric-strip { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border-subtle); font-size: 12.5px; }
   .metric-strip:last-child { border-bottom: none; }
-  .metric-val { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 14.5px; color: var(--primary); }
-  .alert-banner { margin-top: 14px; padding: 10px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; line-height: 1.4; }
+  .metric-val { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 14px; color: var(--primary); }
+  .alert-banner { margin-top: 12px; padding: 8px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 700; line-height: 1.4; }
   .alert-banner.safe { background: #DCFCE7; color: #15803D; border: 1px solid #86EFAC; }
   .alert-banner.risk { background: #FEE2E2; color: #B91C1C; border: 1px solid #FCA5A5; }
 
-  /* ========================================================= */
-  /* LIVE INTERACTIVE HTML INFOGRAPHIC PIPELINE ENGINE */
-  /* ========================================================= */
+  /* LIVE INTERACTIVE INFOGRAPHIC ENGINE */
   .interactive-infographic-box {
     background: #FFFFFF;
     border: 1.5px solid var(--border-subtle);
-    border-radius: 16px;
-    padding: 32px;
+    border-radius: 14px;
+    padding: 24px;
     box-shadow: var(--shadow-lg);
-    position: relative;
   }
   .sim-control-bar {
     display: flex;
@@ -323,22 +351,17 @@
     align-items: center;
     background: #090D16;
     border: 1px solid rgba(16, 185, 129, 0.3);
-    border-radius: 10px;
-    padding: 14px 20px;
-    margin-bottom: 24px;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
     color: #FFFFFF;
+    gap: 10px;
+    flex-wrap: wrap;
   }
-  .sim-status-title {
-    font-size: 13.5px;
-    font-weight: 800;
-    color: #10B981;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  .sim-status-title { font-size: 13px; font-weight: 800; color: #10B981; display: flex; align-items: center; gap: 8px; }
   .sim-pulse-dot {
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     background: #10B981;
     border-radius: 50%;
     box-shadow: 0 0 10px #10B981;
@@ -349,83 +372,80 @@
     50% { transform: scale(1.3); opacity: 1; }
     100% { transform: scale(0.95); opacity: 0.8; }
   }
-  .sim-btn-group { display: flex; gap: 10px; }
+  .sim-btn-group { display: flex; gap: 8px; }
   .btn-sim-action {
     background: #008B44;
     color: #ffffff;
     border: none;
-    padding: 7px 16px;
+    padding: 6px 14px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s;
+    white-space: nowrap;
   }
-  .btn-sim-action:hover { background: #005C2D; transform: translateY(-1px); }
+  .btn-sim-action:hover { background: #005C2D; }
   .btn-sim-reset {
     background: #1E293B;
     color: #94A3B8;
     border: 1px solid #334155;
-    padding: 7px 14px;
+    padding: 6px 12px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
     cursor: pointer;
+    white-space: nowrap;
   }
-  .btn-sim-reset:hover { background: #334155; color: #FFFFFF; }
 
   .stepper-tabs {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px;
+    margin-bottom: 20px;
   }
   .step-tab-node {
     background: #F8FAFC;
     border: 1.5px solid #E2E8F0;
     border-radius: 8px;
-    padding: 10px 12px;
+    padding: 8px 10px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.2s;
   }
-  .step-tab-node:hover { border-color: var(--primary); transform: translateY(-2px); }
   .step-tab-node.active {
     background: var(--primary-light);
     border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(0, 139, 68, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 139, 68, 0.12);
   }
-  .step-tab-node .n-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 800; color: var(--primary); }
-  .step-tab-node .n-name { font-size: 12px; font-weight: 700; color: var(--text-main); margin-top: 2px; }
+  .step-tab-node .n-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 800; color: var(--primary); }
+  .step-tab-node .n-name { font-size: 11.5px; font-weight: 700; color: var(--text-main); margin-top: 1px; white-space: nowrap; }
 
   .pipeline-track-wrapper {
     background: #F1F5F9;
     border-radius: 9999px;
-    height: 8px;
-    margin-bottom: 28px;
+    height: 6px;
+    margin-bottom: 24px;
     overflow: hidden;
-    position: relative;
   }
   .pipeline-track-fill {
     height: 100%;
     width: 20%;
     background: linear-gradient(90deg, #008B44, #10B981);
-    transition: width 0.4s ease;
+    transition: width 0.35s ease;
   }
 
-  .interactive-cards-stack { display: flex; flex-direction: column; gap: 18px; }
+  .interactive-cards-stack { display: flex; flex-direction: column; gap: 14px; }
   .step-live-card {
     background: #FFFFFF;
     border: 1.5px solid #E2E8F0;
-    border-radius: 12px;
-    padding: 22px 24px;
-    transition: all 0.3s ease;
-    border-left: 6px solid var(--primary);
+    border-radius: 10px;
+    padding: 18px 20px;
+    transition: all 0.25s ease;
+    border-left: 5px solid var(--primary);
   }
   .step-live-card.active-focus {
     border-color: var(--primary);
-    box-shadow: 0 12px 30px rgba(0, 139, 68, 0.12);
-    transform: scale(1.01);
+    box-shadow: 0 8px 25px rgba(0, 139, 68, 0.1);
   }
   .step-live-card.s1 { border-left-color: #008B44; }
   .step-live-card.s2 { border-left-color: #4F46E5; }
@@ -433,14 +453,15 @@
   .step-live-card.s4 { border-left-color: #E11D48; }
   .step-live-card.s5 { border-left-color: #0284C7; }
 
-  .step-live-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .step-live-title { font-size: 16px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+  .step-live-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; flex-wrap: wrap; }
+  .step-live-title { font-size: 15px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
   .step-live-badge {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
-    padding: 2px 8px;
+    padding: 2px 7px;
     border-radius: 4px;
+    white-space: nowrap;
   }
   .s1 .step-live-badge { background: #E8F8F0; color: #008B44; }
   .s2 .step-live-badge { background: #EEF2FF; color: #4F46E5; }
@@ -448,77 +469,118 @@
   .s4 .step-live-badge { background: #FFE4E6; color: #E11D48; }
   .s5 .step-live-badge { background: #E0F2FE; color: #0284C7; }
 
-  .step-live-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: center; }
-  .step-live-desc { font-size: 13px; color: #475569; line-height: 1.6; text-align: justify; }
+  .step-live-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; align-items: center; }
+  @media (max-width: 850px) {
+    .step-live-grid { grid-template-columns: 1fr; }
+  }
+  .step-live-desc { font-size: 12.5px; color: #475569; line-height: 1.55; text-align: justify; }
 
-  .checklist-box { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px 16px; }
-  .checklist-title { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748B; margin-bottom: 8px; }
-  .check-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #1E293B; margin-bottom: 6px; cursor: pointer; }
+  .checklist-box { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 10px 14px; }
+  .checklist-title { font-size: 10.5px; font-weight: 800; text-transform: uppercase; color: #64748B; margin-bottom: 6px; }
+  .check-item { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: #1E293B; margin-bottom: 4px; cursor: pointer; }
   .check-item:last-child { margin-bottom: 0; }
-  .check-item input[type="checkbox"] { accent-color: var(--primary); width: 15px; height: 15px; cursor: pointer; }
+  .check-item input[type="checkbox"] { accent-color: var(--primary); width: 14px; height: 14px; cursor: pointer; }
 
   /* EXPANDED AI PROMPT STUDIO */
   .ai-studio-container {
     display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 20px;
+    grid-template-columns: 280px 1fr;
+    gap: 18px;
     background: #090D16;
     border: 1px solid rgba(16, 185, 129, 0.3);
     border-radius: 12px;
-    padding: 24px;
+    padding: 20px;
     color: #FFFFFF;
     box-shadow: var(--shadow-lg);
   }
-  .prompt-sidebar { display: flex; flex-direction: column; gap: 6px; max-height: 420px; overflow-y: auto; padding-right: 6px; }
+  @media (max-width: 850px) {
+    .ai-studio-container { grid-template-columns: 1fr; }
+  }
+  .prompt-sidebar { display: flex; flex-direction: column; gap: 5px; max-height: 380px; overflow-y: auto; padding-right: 4px; }
   .prompt-tab-btn {
     background: #1E293B;
     border: 1px solid #334155;
     border-radius: 6px;
-    padding: 10px 12px;
+    padding: 8px 10px;
     text-align: left;
     color: #CBD5E1;
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
   }
   .prompt-tab-btn:hover { background: #334155; }
   .prompt-tab-btn.active { background: #064E3B; border-color: #10B981; color: #A7F3D0; }
-  .prompt-view-pane { display: flex; flex-direction: column; justify-content: space-between; background: #0F172A; border: 1px solid #1E293B; border-radius: 8px; padding: 18px; }
-  .prompt-header-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1E293B; padding-bottom: 10px; margin-bottom: 12px; }
-  .prompt-h-title { font-size: 13px; font-weight: 800; color: #10B981; }
+  
+  .prompt-view-pane { display: flex; flex-direction: column; justify-content: space-between; background: #0F172A; border: 1px solid #1E293B; border-radius: 8px; padding: 16px; }
+  .prompt-header-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1E293B; padding-bottom: 8px; margin-bottom: 10px; gap: 8px; flex-wrap: wrap; }
+  .prompt-h-title { font-size: 12px; font-weight: 800; color: #10B981; }
   .btn-copy {
     background: rgba(16, 185, 129, 0.2);
     color: #A7F3D0;
     border: 1px solid #10B981;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 4px;
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
     cursor: pointer;
+    white-space: nowrap;
   }
-  .prompt-body-text { font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.6; color: #E2E8F0; white-space: pre-wrap; overflow-y: auto; max-height: 300px; }
+  .prompt-body-text { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; line-height: 1.55; color: #E2E8F0; white-space: pre-wrap; overflow-y: auto; max-height: 280px; }
 
-  /* ARTIFACTS VAULT CARDS */
-  .vault-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  /* ========================================================= */
+  /* RESPONSIVE ARTIFACTS VAULT CARDS (NO OVERLAP EVER) */
+  /* ========================================================= */
+  .vault-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
   .vault-card {
     background: var(--surface-card);
     border: 1px solid var(--border-subtle);
     border-radius: 10px;
-    padding: 18px;
+    padding: 16px;
     box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-top: 3.5px solid var(--primary);
+    min-width: 0;
   }
-  .vault-badge { font-size: 10px; font-weight: 800; background: var(--primary-light); color: var(--primary); padding: 2px 6px; border-radius: 3px; width: fit-content; margin-bottom: 8px; }
-  .vault-name { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
-  .vault-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.45; margin-bottom: 16px; }
-  .vault-actions-row { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 10px; }
-  .btn-preview { background: #F1F5F9; border: 1px solid #CBD5E1; color: var(--text-main); padding: 5px 10px; border-radius: 4px; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+  .vault-badge { font-size: 9.5px; font-weight: 800; background: var(--primary-light); color: var(--primary); padding: 2px 6px; border-radius: 3px; width: fit-content; margin-bottom: 6px; white-space: nowrap; }
+  .vault-name { font-size: 13.5px; font-weight: 800; color: var(--text-main); margin-bottom: 3px; }
+  .vault-desc { font-size: 11px; color: var(--text-muted); line-height: 1.45; margin-bottom: 14px; }
+  
+  .vault-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 10px;
+    gap: 8px;
+  }
+  .btn-preview {
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    color: var(--text-main);
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+  }
   .btn-preview:hover { background: #E2E8F0; }
-  .btn-download-link { font-size: 11.5px; font-weight: 700; color: var(--primary); text-decoration: none; }
+  .btn-download-link {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    white-space: nowrap;
+    text-align: right;
+  }
   .btn-download-link:hover { text-decoration: underline; }
 
   /* UNIVERSAL MODAL VIEWER SYSTEM */
@@ -531,7 +593,7 @@
     z-index: 1000;
     justify-content: center;
     align-items: center;
-    padding: 24px;
+    padding: 16px;
   }
   .modal-container {
     background: #FFFFFF;
@@ -545,21 +607,23 @@
     box-shadow: 0 25px 60px rgba(0,0,0,0.3);
     border: 1px solid var(--border-subtle);
   }
-  .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: #F8FAFC; border-bottom: 1px solid var(--border-subtle); }
-  .modal-title { font-size: 16px; font-weight: 800; color: var(--text-main); }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #F8FAFC; border-bottom: 1px solid var(--border-subtle); }
+  .modal-title { font-size: 15px; font-weight: 800; color: var(--text-main); }
   .modal-close-btn { background: none; border: none; font-size: 20px; font-weight: 800; color: var(--text-muted); cursor: pointer; }
-  .modal-body { padding: 24px; overflow-y: auto; flex: 1; }
-  .modal-footer { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: #F8FAFC; border-top: 1px solid var(--border-subtle); }
+  .modal-body { padding: 20px; overflow-y: auto; flex: 1; }
+  .modal-footer { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: #F8FAFC; border-top: 1px solid var(--border-subtle); gap: 10px; flex-wrap: wrap; }
 
   /* FOOTER */
   .site-footer {
     border-top: 1px solid var(--border-subtle);
-    padding-top: 24px;
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--text-muted);
+    gap: 10px;
+    flex-wrap: wrap;
   }
 </style>
 </head>
@@ -840,7 +904,7 @@
               <span class="step-live-badge">GIAI ĐOẠN 01</span>
               <span>Khởi Tạo Nhu Cầu & Tiếp Nhận Hồ Sơ Số</span>
             </div>
-            <div style="font-size:12px; font-weight:800; color:#008B44;">SLA: 15 - 30 PHÚT</div>
+            <div style="font-size:11.5px; font-weight:800; color:#008B44;">SLA: 15 - 30 PHÚT</div>
           </div>
           <div class="step-live-grid">
             <p class="step-live-desc">
@@ -862,7 +926,7 @@
               <span class="step-live-badge">GIAI ĐOẠN 02</span>
               <span>Số Hóa Hồ Sơ & Thẩm Định Danh Tính eKYC</span>
             </div>
-            <div style="font-size:12px; font-weight:800; color:#4F46E5;">SLA: 02 - 04 GIỜ</div>
+            <div style="font-size:11.5px; font-weight:800; color:#4F46E5;">SLA: 02 - 04 GIỜ</div>
           </div>
           <div class="step-live-grid">
             <p class="step-live-desc">
@@ -884,7 +948,7 @@
               <span class="step-live-badge">GIAI ĐOẠN 03</span>
               <span>Thẩm Định Thực Địa & Lập Mô Hình DTI / LTV</span>
             </div>
-            <div style="font-size:12px; font-weight:800; color:#D97706;">SLA: 04 - 08 GIỜ</div>
+            <div style="font-size:11.5px; font-weight:800; color:#D97706;">SLA: 04 - 08 GIỜ</div>
           </div>
           <div class="step-live-grid">
             <p class="step-live-desc">
@@ -906,7 +970,7 @@
               <span class="step-live-badge">GIAI ĐOẠN 04</span>
               <span>Phê Duyệt LOS & Đăng Ký Giao Dịch Bảo Đảm</span>
             </div>
-            <div style="font-size:12px; font-weight:800; color:#E11D48;">SLA: 12 - 24 GIỜ</div>
+            <div style="font-size:11.5px; font-weight:800; color:#E11D48;">SLA: 12 - 24 GIỜ</div>
           </div>
           <div class="step-live-grid">
             <p class="step-live-desc">
@@ -928,7 +992,7 @@
               <span class="step-live-badge">GIAI ĐOẠN 05</span>
               <span>Giải Ngân Core T24 & Quản Lý Rủi Ro Sau Vay</span>
             </div>
-            <div style="font-size:12px; font-weight:800; color:#0284C7;">SLA: 02 - 04 GIỜ</div>
+            <div style="font-size:11.5px; font-weight:800; color:#0284C7;">SLA: 02 - 04 GIỜ</div>
           </div>
           <div class="step-live-grid">
             <p class="step-live-desc">
@@ -984,19 +1048,21 @@
 6. Biểu phí phạt trả nợ trước hạn theo từng năm vay.
 Hãy cảnh báo bất kỳ điều khoản ràng buộc nào có thể gây rủi ro pháp lý cho ngân hàng hoặc khách hàng.</div>
         </div>
-        <div style="font-size:11px; color:#94A3B8; margin-top:10px; border-top:1px solid #1E293B; padding-top:8px;">
+        <div style="font-size:10.5px; color:#94A3B8; margin-top:8px; border-top:1px solid #1E293B; padding-top:6px;">
           Tuân thủ: <strong>An toàn dữ liệu ngân hàng • Không đưa dữ liệu nhạy cảm lên AI công cộng</strong>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 4: ARTIFACTS VAULT WITH LIVE MODAL VIEWERS -->
+  <!-- ========================================================= -->
+  <!-- SECTION 4: ARTIFACTS VAULT (CLEAN RESPONSIVE CARDS) -->
+  <!-- ========================================================= -->
   <section class="section-block" id="vault">
     <div class="section-header-row">
       <div class="sec-title-group">
         <h2>Kho Lưu Trữ Hồ Sơ & Minh Chứng Số Gốc</h2>
-        <p>Bấm <strong>"Xem trực tiếp"</strong> để mở xem ngay trên trình duyệt hoặc tải về máy</p>
+        <p>Bấm <strong>"Xem trực tiếp"</strong> để mở xem ngay trên trình duyệt hoặc bấm <strong>"Tải về"</strong></p>
       </div>
       <span class="sec-tag-badge">ARTIFACTS VAULT</span>
     </div>
@@ -1135,7 +1201,7 @@ Hãy cảnh báo bất kỳ điều khoản ràng buộc nào có thể gây r�
       </table>
     </div>
     <div class="modal-footer">
-      <span style="font-size:12px; color:var(--text-muted);">Tệp tin: Bang_tinh_tham_dinh_va_lich_tra_no_VPBank.xlsx</span>
+      <span style="font-size:11.5px; color:var(--text-muted);">Tệp tin: Bang_tinh_tham_dinh_va_lich_tra_no_VPBank.xlsx</span>
       <a href="Bang_tinh_tham_dinh_va_lich_tra_no_VPBank.xlsx" class="nav-cta" download>Tải File Excel Đầy Đủ (.xlsx)</a>
     </div>
   </div>
@@ -1152,7 +1218,7 @@ Hãy cảnh báo bất kỳ điều khoản ràng buộc nào có thể gây r�
       <img src="Infographic_5_buoc_vay_the_chap_VPBank.png" alt="Infographic" style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 10px 25px rgba(0,0,0,0.1);">
     </div>
     <div class="modal-footer">
-      <span style="font-size:12px; color:var(--text-muted);">Độ phân giải siêu nét: 1400 x 1800 px</span>
+      <span style="font-size:11.5px; color:var(--text-muted);">Độ phân giải siêu nét: 1400 x 1800 px</span>
       <a href="Infographic_5_buoc_vay_the_chap_VPBank.png" class="nav-cta" download>Tải Ảnh Poster HD (.png)</a>
     </div>
   </div>
@@ -1171,7 +1237,7 @@ Hãy cảnh báo bất kỳ điều khoản ràng buộc nào có thể gây r�
       
       <!-- PROMPT 1 -->
       <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:3.5px solid #008B44; padding:12px 16px; margin-bottom:12px; border-radius:4px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
           <strong style="color:#0F172A; font-size:13px;">Prompt 1: Bóc Tách & Tóm Tắt Điều Khoản Hợp Đồng Tín Dụng</strong>
           <span style="font-size:10px; font-weight:800; background:#E8F8F0; color:#008B44; padding:2px 6px; border-radius:3px;">Thẩm Định Pháp Lý</span>
         </div>
@@ -1187,7 +1253,7 @@ Hãy cảnh báo bất kỳ điều khoản ràng buộc nào có thể gây r�
 
       <!-- PROMPT 2 -->
       <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:3.5px solid #008B44; padding:12px 16px; margin-bottom:12px; border-radius:4px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
           <strong style="color:#0F172A; font-size:13px;">Prompt 2: Soạn Thảo Thư Tư Vấn Gói Vay Mua Bất Động Sản Cá Nhân Hóa</strong>
           <span style="font-size:10px; font-weight:800; background:#E8F8F0; color:#008B44; padding:2px 6px; border-radius:3px;">Tư Vấn Bán Hàng</span>
         </div>
@@ -1200,7 +1266,7 @@ Yêu cầu:
 
       <!-- PROMPT 3 -->
       <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:3.5px solid #008B44; padding:12px 16px; margin-bottom:12px; border-radius:4px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
           <strong style="color:#0F172A; font-size:13px;">Prompt 3: Soạn Kịch Bản Tư Vấn Gói Vay Mua Ô Tô Tiêu Dùng</strong>
           <span style="font-size:10px; font-weight:800; background:#E8F8F0; color:#008B44; padding:2px 6px; border-radius:3px;">Tư Vấn Bán Hàng</span>
         </div>
@@ -1212,7 +1278,7 @@ Yêu cầu:
 
       <!-- PROMPT 4 -->
       <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:3.5px solid #008B44; padding:12px 16px; margin-bottom:12px; border-radius:4px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
           <strong style="color:#0F172A; font-size:13px;">Prompt 4: Kịch Bản Xử Lý Từ Chối & Băn Khoăn Lãi Suất Thả Nổi</strong>
           <span style="font-size:10px; font-weight:800; background:#E8F8F0; color:#008B44; padding:2px 6px; border-radius:3px;">Xử Lý Từ Chối</span>
         </div>
@@ -1224,7 +1290,7 @@ Yêu cầu:
 
       <!-- PROMPT 5 -->
       <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:3.5px solid #008B44; padding:12px 16px; margin-bottom:12px; border-radius:4px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
           <strong style="color:#0F172A; font-size:13px;">Prompt 5: Thẩm Định Thu Nhập Từ Hộ Kinh Doanh Cá Thể</strong>
           <span style="font-size:10px; font-weight:800; background:#E8F8F0; color:#008B44; padding:2px 6px; border-radius:3px;">Thẩm Định Thu Nhập</span>
         </div>
@@ -1233,7 +1299,7 @@ Yêu cầu:
 
       <!-- PROMPT 6 -->
       <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:3.5px solid #008B44; padding:12px 16px; margin-bottom:12px; border-radius:4px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
           <strong style="color:#0F172A; font-size:13px;">Prompt 6: Bóc Tách Dữ Liệu Sao Kê Tài Khoản Ngân Hàng (Bank Statement)</strong>
           <span style="font-size:10px; font-weight:800; background:#E8F8F0; color:#008B44; padding:2px 6px; border-radius:3px;">Xử Lý Dữ Liệu</span>
         </div>
@@ -1245,7 +1311,7 @@ Yêu cầu:
 
       <!-- PROMPT 7 -->
       <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:3.5px solid #008B44; padding:12px 16px; margin-bottom:12px; border-radius:4px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
           <strong style="color:#0F172A; font-size:13px;">Prompt 7: Lập Báo Cáo Đề Xuất Cấp Tín Dụng Sơ Bộ (Credit Memo)</strong>
           <span style="font-size:10px; font-weight:800; background:#E8F8F0; color:#008B44; padding:2px 6px; border-radius:3px;">Tác Nghiệp Tín Dụng</span>
         </div>
@@ -1254,7 +1320,7 @@ Yêu cầu:
 
       <!-- PROMPT 8 -->
       <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-left:3.5px solid #E51937; padding:12px 16px; margin-bottom:12px; border-radius:4px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
           <strong style="color:#0F172A; font-size:13px;">Prompt 8: Kỹ Thuật Che Giấu Dữ Liệu PII (Data Masking - Nghị Định 13/2023/NĐ-CP)</strong>
           <span style="font-size:10px; font-weight:800; background:#FEE2E2; color:#B91C1C; padding:2px 6px; border-radius:3px;">Bảo Mật Dữ Liệu</span>
         </div>
@@ -1263,7 +1329,7 @@ Yêu cầu:
 
     </div>
     <div class="modal-footer">
-      <span style="font-size:12px; color:var(--text-muted);">Tệp tin: So_tay_Prompt_Engineering_Tin_dung_AI.docx</span>
+      <span style="font-size:11.5px; color:var(--text-muted);">Tệp tin: So_tay_Prompt_Engineering_Tin_dung_AI.docx</span>
       <a href="So_tay_Prompt_Engineering_Tin_dung_AI.docx" class="nav-cta" download>Tải File Word Đầy Đủ (.docx)</a>
     </div>
   </div>
@@ -1280,7 +1346,7 @@ Yêu cầu:
       <iframe src="13_4NLS02-13_Lê Hương Giang.html" style="width:100%; height:100%; border:none;"></iframe>
     </div>
     <div class="modal-footer">
-      <span style="font-size:12px; color:var(--text-muted);">Độ dài chuẩn: 3 Trang A4 tròn trịa</span>
+      <span style="font-size:11.5px; color:var(--text-muted);">Độ dài chuẩn: 3 Trang A4 tròn trịa</span>
       <a href="13_4NLS02-13_Lê Hương Giang.pdf" class="nav-cta" target="_blank" download>Tải File PDF Nộp Bài (.pdf)</a>
     </div>
   </div>
